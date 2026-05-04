@@ -29,19 +29,14 @@ const skillGroups = [
 
 const timeline = [
   {
-    period: '2023 — PRESENT', active: true,
-    role: 'TECHNICAL ARTIST @ VFX STUDIO',
-    desc: 'LED virtual production, ICVFX stage shoots, runtime tool development, and pipeline automation for film and broadcast.',
+    period: '2022.10 — PRESENT', active: true,
+    role: 'UNREAL ENGINE DEVELOPER · 기술연구소 UE PROJECT TEAM',
+    desc: 'Virtual Production environment & RND. NETFLIX DP2 / The Bequeathed / Gwaeundang, Korea Expressway digital twins, film "Hope". Plugin development, pipeline automation, and shader systems.',
   },
   {
-    period: '2022 — 2023', active: false,
-    role: 'ENVIRONMENT ARTIST & TECHNICAL ARTIST',
-    desc: 'Unreal Engine environment production, master material systems, and scene optimization for VFX projects.',
-  },
-  {
-    period: '2021 — 2022', active: false,
-    role: 'JUNIOR TECHNICAL ARTIST',
-    desc: 'Asset management pipelines, Python scripting tools, and early Unreal Engine workflow integration.',
+    period: '2023 — PRESENT', active: false,
+    role: 'ICVFX / UNREAL ENGINE LECTURER',
+    desc: 'GCC Academy (online), 부산영상위원회 workshops, 동국대학교 대학원 — Unreal Engine for Virtual Production curriculum.',
   },
 ]
 
@@ -62,7 +57,7 @@ export default function About() {
               </div>
               <div className="mt-8 flex gap-4">
                 <div className="flex-1 h-px bg-outline-variant/30 self-center" />
-                <span className="font-label text-[10px] tracking-[0.2em] text-secondary">ID_DOHAN.TA</span>
+                <span className="font-label text-[10px] tracking-[0.2em] text-secondary">ID_LEE.DOHAN</span>
               </div>
             </div>
           </div>

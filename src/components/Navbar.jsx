@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-[#131313]/40 backdrop-blur-xl border-b border-[#353534]/20">
       <Link to="/" className="font-headline text-xl font-bold tracking-tighter text-[#E5E2E1]">
-        DOHAN.TA
+        LEE DOHAN
       </Link>
 
       <nav className="hidden md:flex items-center space-x-10">

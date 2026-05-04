@@ -1,24 +1,5 @@
 const projects = [
   {
-    title: 'RAY TRACER',
-    lang: 'C++',
-    desc: 'Software ray tracer with ray-sphere intersection, 2x2 supersampling, and full rendering pipeline from scratch.',
-    tags: ['RENDERING', 'MATH', 'RAY TRACING'],
-    snippet: `// Custom Ray-Sphere Intersection
-float discriminant = dot(oc, oc) - radius * radius;
-if (discriminant < 0) return -1.0f;
-return (-b - sqrt(discriminant));
-
-// 2x2 Supersampling
-for (int sx = 0; sx < 2; sx++) {
-  for (int sy = 0; sy < 2; sy++) {
-    float u = (x + (sx + 0.5f) * 0.5f) / width;
-    color += trace(getRay(u, v));
-  }
-}
-color /= 4.0f;`,
-  },
-  {
     title: 'IMAGE → GEOMETRY GENERATOR',
     lang: 'C++ / UNREAL ENGINE',
     desc: 'Reads PNG pixel data and procedurally generates StaticMesh-based room/wall structures inside Unreal Engine.',
