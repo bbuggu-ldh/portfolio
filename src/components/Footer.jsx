@@ -1,3 +1,6 @@
+import { useLang } from '../i18n/LanguageContext'
+import { useT } from '../i18n/content'
+
 const links = [
   { label: 'EMAIL',    href: 'mailto:dohan.rnd@gmail.com', highlight: true },
   { label: 'GITHUB',   href: 'https://github.com/dohan824' },
@@ -5,10 +8,12 @@ const links = [
 ]
 
 export default function Footer() {
+  const { lang } = useLang()
+  const t = useT(lang)
   return (
     <footer className="w-full py-6 px-8 flex flex-col md:flex-row justify-between items-center border-t border-[#353534]/10 bg-[#131313] gap-4">
       <div className="font-headline text-xs font-medium text-[#BAC9CD] tracking-widest">
-        © 2026 LEE DOHAN — ALL RIGHTS RESERVED.
+        {t.footer.copyright}
       </div>
       <div className="flex space-x-8">
         {links.map(({ label, href, highlight }) => (
