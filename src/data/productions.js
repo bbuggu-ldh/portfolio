@@ -82,8 +82,12 @@ export const productions = [
     title: { ko: '괸당 — 드라이빙 씬 VP 환경', en: 'NETFLIX Gwaeundang — Driving Scene VP' },
     role: { ko: '에셋 모델링/텍스처링 · 환경 라이팅 · Road/Snow PCG · Decal · 3DGS 이미지 필터링 코드', en: 'Asset modeling/texturing · environment lighting · Road/Snow PCG · decals · 3DGS image-filtering code' },
     tags: ['Virtual Production', '3DGS', 'PCG'],
-    thumb: null,        // e.g. 'productions/{id}/thumb.jpg'
-    publicRefs: [],     // e.g. [{ label: 'Official trailer', url: 'https://...' }]
+    thumb: null,
+    publicRefs: [
+      { label: '뉴스1 — 제주 촬영 본격화',  url: 'https://www.news1.kr/local/jeju/6071153' },
+      { label: '헤럴드경제 — 촬영 시작',     url: 'https://biz.heraldcorp.com/article/10675405' },
+      { label: '파이낸셜뉴스 — 글로벌 노출', url: 'https://www.fnnews.com/news/202602120958294329' },
+    ],
   },
   {
     id: 'genius',
@@ -99,11 +103,13 @@ export const productions = [
     id: 'slow-intense',
     year: '2025',
     client: 'NETFLIX',
-    title: { ko: '천천히 강렬하게 — 무대 환경 애니메이션', en: 'NETFLIX Slow & Intense — Stage Environment Animation' },
+    title: { ko: '천천히 강렬하게 (Show Business) — 무대 환경 애니메이션', en: 'NETFLIX Show Business — Stage Environment Animation' },
     role: { ko: '3중 2무대 애니메이션', en: 'Triple/double stage animation' },
     tags: ['Stage', 'Animation'],
-    thumb: null,        // e.g. 'productions/{id}/thumb.jpg'
-    publicRefs: [],     // e.g. [{ label: 'Official trailer', url: 'https://...' }]
+    thumb: null,
+    publicRefs: [
+      { label: 'NETFLIX 공식 — 제작 확정 발표', url: 'https://about.netflix.com/ko/news/show-business-wt-production' },
+    ],
   },
   {
     id: 'mbc-election-2025',
@@ -146,18 +152,28 @@ export const productions = [
     title: { ko: 'D.P. 시즌 2 — 터널 제작 및 촬영', en: 'NETFLIX D.P. Season 2 — Tunnel Build & Shoot' },
     role: { ko: 'VP Unreal 환경 · DMX 라이팅 매칭 적용', en: 'VP Unreal environment · DMX lighting match applied' },
     tags: ['Virtual Production', 'NETFLIX'],
-    thumb: null,        // e.g. 'productions/{id}/thumb.jpg'
-    publicRefs: [],     // e.g. [{ label: 'Official trailer', url: 'https://...' }]
+    thumb: null,
+    publicRefs: [
+      { label: '공식 예고편 (Official Trailer)', url: 'https://www.youtube.com/watch?v=SxnY2E_uMtY' },
+      { label: 'Official Trailer [ENG SUB]',    url: 'https://www.youtube.com/watch?v=C3tZog8HCDU' },
+      { label: '티저 예고편',                     url: 'https://www.youtube.com/watch?v=xp4qLWN41pU' },
+      { label: 'NETFLIX 작품 페이지',             url: 'https://www.netflix.com/title/81280917' },
+    ],
   },
   {
-    id: 'the-bequeathed',
+    id: 'black-knight',
     year: '2023',
     client: 'NETFLIX',
-    title: { ko: '택배기사 — VP Unreal 환경', en: 'NETFLIX The Bequeathed — VP Unreal Environment' },
+    title: { ko: '택배기사 — VP Unreal 환경', en: 'NETFLIX Black Knight — VP Unreal Environment' },
     role: { ko: '환경 담당 · DMX 라이팅 매칭 적용', en: 'Environment lead · DMX lighting match applied' },
     tags: ['Virtual Production', 'NETFLIX'],
-    thumb: null,        // e.g. 'productions/{id}/thumb.jpg'
-    publicRefs: [],     // e.g. [{ label: 'Official trailer', url: 'https://...' }]
+    thumb: null,
+    publicRefs: [
+      { label: '공식 예고편 [ENG SUB]', url: 'https://www.youtube.com/watch?v=Z6UIKAcddes' },
+      { label: 'Official Trailer',     url: 'https://www.youtube.com/watch?v=Se26Op9sEC8' },
+      { label: '티저 예고편',           url: 'https://www.youtube.com/watch?v=p8hBRAAY8Uc' },
+      { label: 'NETFLIX 작품 페이지',   url: 'https://www.netflix.com/title/81195027' },
+    ],
   },
   {
     id: 'on-the-blues',

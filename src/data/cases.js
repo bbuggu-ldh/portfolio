@@ -166,7 +166,7 @@ export const cases = [
     },
     summary: {
       ko: 'Unreal 가상 환경의 라이팅 변화를 실시간으로 캡처해 DMX로 송출, 현장 ARRI 조명을 자동 동기화하는 워크플로 제안 및 구현. NETFLIX DP2, 택배기사 등 본 촬영에 적용',
-      en: 'Captures Unreal lighting in real time and pushes it through DMX to drive on-set ARRI fixtures. Proposed the design and built it. Shipped on NETFLIX DP2 and The Bequeathed.',
+      en: 'Captures Unreal lighting in real time and pushes it through DMX to drive on-set ARRI fixtures. Proposed the design and built it. Shipped on NETFLIX D.P. Season 2 and Black Knight.',
     },
     situation: {
       ko: [
@@ -216,7 +216,7 @@ export const cases = [
       en: [
         'On-set lighting setup time roughly halved — the gaffer now focuses on color calibration and fine detail.',
         'Big jump in match accuracy — lighting tracks dynamic changes automatically.',
-        'Shipped on: NETFLIX DP2 (2023), The Bequeathed (2023), and routine use across other VP shoots.',
+        'Shipped on: NETFLIX D.P. Season 2 (2023), Black Knight (2023), and routine use across other VP shoots.',
         'Limit: did not formally measure latency. Visually clean on set, but next project will use Unreal Insights to timestamp capture → DMX dispatch.',
       ],
     },

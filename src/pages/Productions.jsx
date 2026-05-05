@@ -294,9 +294,47 @@ function ProductionCard({ p, lang }) {
         }}>
           {p.role[lang]}
         </p>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: C.textMuted }}>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: C.textMuted, marginBottom: p.publicRefs?.length ? 12 : 0 }}>
           {p.tags.join(' · ')}
         </div>
+
+        {/* Public references */}
+        {p.publicRefs && p.publicRefs.length > 0 && (
+          <div style={{
+            paddingTop: 10,
+            borderTop: `1px solid ${C.borderSoft}`,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 4,
+          }}>
+            {p.publicRefs.slice(0, 3).map((ref, i) => (
+              <a
+                key={i}
+                href={ref.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={e => e.stopPropagation()}
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 10,
+                  color: C.accent,
+                  textDecoration: 'none',
+                  letterSpacing: '0.02em',
+                  display: 'inline-block',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.textDecoration = 'underline')}
+                onMouseLeave={e => (e.currentTarget.style.textDecoration = 'none')}
+              >
+                ↗ {ref.label}
+              </a>
+            ))}
+            {p.publicRefs.length > 3 && (
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: C.textMuted }}>
+                +{p.publicRefs.length - 3} more
+              </span>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )
