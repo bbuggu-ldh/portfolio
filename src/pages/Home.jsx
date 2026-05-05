@@ -95,41 +95,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───────── STATS BAND ───────── */}
-      <section style={{ background: C.bgGray, borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}` }}>
-        <div style={{ ...PAGE, padding: '40px 24px' }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-            gap: 24,
-          }}>
-            {t.home.stats.map(s => (
-              <div key={s.label} style={{ textAlign: 'center' }}>
-                <div style={{
-                  fontFamily: 'var(--font-headline)',
-                  fontSize: 36,
-                  fontWeight: 700,
-                  color: C.text,
-                  letterSpacing: '-0.02em',
-                  marginBottom: 6,
-                }}>
-                  {s.num}
-                </div>
-                <div style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 11,
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  color: C.textSub,
-                }}>
-                  {s.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ───────── FOCUS AREAS ───────── */}
       <section style={{ background: C.bg }}>
         <div style={{ ...PAGE, padding: '120px 24px' }}>

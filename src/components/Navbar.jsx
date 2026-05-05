@@ -4,9 +4,9 @@ import { useT } from '../i18n/content'
 import LangToggle from './LangToggle'
 
 const navItems = [
-  { to: '/work',  key: 'work' },
-  { to: '/code',  key: 'code' },
-  { to: '/about', key: 'about' },
+  { to: '/cases',       key: 'cases' },
+  { to: '/productions', key: 'productions' },
+  { to: '/about',       key: 'about' },
 ]
 
 export default function Navbar() {
@@ -23,10 +23,10 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 50,
-        background: 'rgba(255,255,255,0.85)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: '1px solid #e5e5e5',
+        background: 'rgba(255,255,255,0.55)',
+        backdropFilter: 'blur(14px) saturate(140%)',
+        WebkitBackdropFilter: 'blur(14px) saturate(140%)',
+        borderBottom: 'none',
         padding: '14px 32px',
         display: 'flex',
         alignItems: 'center',
