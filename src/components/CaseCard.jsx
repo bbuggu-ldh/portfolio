@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import { C, thumbGradient } from '../theme'
+import { media, hasMedia } from '../utils/assets'
 
 export default function CaseCard({ c, lang }) {
+  const thumbUrl = hasMedia(c.thumb) ? media(c.thumb) : null
   return (
     <Link
       to={`/cases/${c.slug}`}
@@ -34,28 +36,44 @@ export default function CaseCard({ c, lang }) {
         overflow: 'hidden',
         background: C.bgAlt,
       }}>
-        <div
-          data-thumb
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: thumbGradient(c.badge),
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'transform 0.5s ease',
-          }}
-        >
-          <span style={{
-            fontFamily: 'var(--font-headline)',
-            fontWeight: 800,
-            fontSize: 'clamp(28px, 4.5vw, 64px)',
-            letterSpacing: '0.04em',
-            color: 'rgba(0,0,0,0.06)',
-          }}>
-            {c.badge}
-          </span>
-        </div>
+        {thumbUrl ? (
+          <img
+            data-thumb
+            src={thumbUrl}
+            alt={c.title?.en ?? c.badge}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              transition: 'transform 0.5s ease',
+            }}
+          />
+        ) : (
+          <div
+            data-thumb
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: thumbGradient(c.badge),
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'transform 0.5s ease',
+            }}
+          >
+            <span style={{
+              fontFamily: 'var(--font-headline)',
+              fontWeight: 800,
+              fontSize: 'clamp(28px, 4.5vw, 64px)',
+              letterSpacing: '0.04em',
+              color: 'rgba(0,0,0,0.06)',
+            }}>
+              {c.badge}
+            </span>
+          </div>
+        )}
         <div style={{
           position: 'absolute',
           top: 14,

@@ -10,7 +10,10 @@ export const cases = [
     year: '2025',
     tier: 1,
     tags: ['Unreal Plugin', 'C++', 'Python', 'LLM', 'GPU Profiling'],
-    publicRefs: [],
+    cover: null,        // e.g. 'cases/{slug}/cover.jpg' — Hero background on detail page
+    thumb: null,        // e.g. 'cases/{slug}/thumb.jpg' — used in card grid
+    gallery: [],        // e.g. ['cases/{slug}/gallery/01.jpg', ...]
+    publicRefs: [],     // e.g. [{ label: 'NETFLIX trailer', url: 'https://...' }]
     title: {
       ko: 'UEProfiler — VP 프로파일링 자동 분석 플러그인',
       en: 'UEProfiler — Automated VP Profiling Plugin',
@@ -77,7 +80,10 @@ export const cases = [
     year: '2025',
     tier: 1,
     tags: ['3DGS', 'SfM', 'Python', 'OpenCV', 'SAM'],
-    publicRefs: [],
+    cover: null,        // e.g. 'cases/{slug}/cover.jpg' — Hero background on detail page
+    thumb: null,        // e.g. 'cases/{slug}/thumb.jpg' — used in card grid
+    gallery: [],        // e.g. ['cases/{slug}/gallery/01.jpg', ...]
+    publicRefs: [],     // e.g. [{ label: 'NETFLIX trailer', url: 'https://...' }]
     title: {
       ko: '3DGS 트레이닝 파이프라인 — NETFLIX 괸당',
       en: '3DGS Training Pipeline — NETFLIX Gwaeundang',
@@ -150,7 +156,10 @@ export const cases = [
     year: '2023',
     tier: 1,
     tags: ['DMX', 'SceneCapture', 'ACES', 'PQ', 'ARRI'],
-    publicRefs: [],
+    cover: null,        // e.g. 'cases/{slug}/cover.jpg' — Hero background on detail page
+    thumb: null,        // e.g. 'cases/{slug}/thumb.jpg' — used in card grid
+    gallery: [],        // e.g. ['cases/{slug}/gallery/01.jpg', ...]
+    publicRefs: [],     // e.g. [{ label: 'NETFLIX trailer', url: 'https://...' }]
     title: {
       ko: '현장 조명 실시간 매칭 시스템 (SceneCapture → DMX)',
       en: 'Real-time On-set Lighting Match (SceneCapture → DMX)',
@@ -221,7 +230,10 @@ export const cases = [
     year: '2024',
     tier: 1,
     tags: ['Python', 'OSC', 'nDisplay', 'Pixera', 'Optitrack', 'Take Recorder', 'Genlock'],
-    publicRefs: [],
+    cover: null,        // e.g. 'cases/{slug}/cover.jpg' — Hero background on detail page
+    thumb: null,        // e.g. 'cases/{slug}/thumb.jpg' — used in card grid
+    gallery: [],        // e.g. ['cases/{slug}/gallery/01.jpg', ...]
+    publicRefs: [],     // e.g. [{ label: 'NETFLIX trailer', url: 'https://...' }]
     title: {
       ko: 'VP 파이프라인 통합 자동화 (3 시스템)',
       en: 'VP Pipeline Automation (3 sub-systems)',
@@ -282,7 +294,10 @@ export const cases = [
     year: '2024',
     tier: 2,
     tags: ['Material Function', 'Triplanar', 'MPC', 'Unreal Plugin', 'HLSL'],
-    publicRefs: [],
+    cover: null,        // e.g. 'cases/{slug}/cover.jpg' — Hero background on detail page
+    thumb: null,        // e.g. 'cases/{slug}/thumb.jpg' — used in card grid
+    gallery: [],        // e.g. ['cases/{slug}/gallery/01.jpg', ...]
+    publicRefs: [],     // e.g. [{ label: 'NETFLIX trailer', url: 'https://...' }]
     title: {
       ko: '모듈식 마스터 머티리얼 시스템',
       en: 'Modular Master Material System',

@@ -4,6 +4,7 @@ import { useT } from '../i18n/content'
 import { productions, lectures } from '../data/productions'
 import Footer from '../components/Footer'
 import { C, PAGE } from '../theme'
+import { media, hasMedia } from '../utils/assets'
 
 export default function Productions() {
   const { lang } = useLang()
@@ -197,6 +198,7 @@ function FilterChip({ active, onClick, children }) {
 
 function ProductionCard({ p, lang }) {
   const tint = clientTint(p.client)
+  const thumbUrl = hasMedia(p.thumb) ? media(p.thumb) : null
   return (
     <div
       style={{
@@ -224,18 +226,27 @@ function ProductionCard({ p, lang }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        overflow: 'hidden',
       }}>
-        <span style={{
-          fontFamily: 'var(--font-headline)',
-          fontWeight: 800,
-          fontSize: 'clamp(18px, 2.5vw, 28px)',
-          letterSpacing: '0.04em',
-          color: 'rgba(0,0,0,0.1)',
-          padding: '0 16px',
-          textAlign: 'center',
-        }}>
-          {p.client}
-        </span>
+        {thumbUrl ? (
+          <img
+            src={thumbUrl}
+            alt={p.title?.en ?? p.client}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        ) : (
+          <span style={{
+            fontFamily: 'var(--font-headline)',
+            fontWeight: 800,
+            fontSize: 'clamp(18px, 2.5vw, 28px)',
+            letterSpacing: '0.04em',
+            color: 'rgba(0,0,0,0.1)',
+            padding: '0 16px',
+            textAlign: 'center',
+          }}>
+            {p.client}
+          </span>
+        )}
         <div style={{
           position: 'absolute',
           top: 12,
@@ -244,6 +255,8 @@ function ProductionCard({ p, lang }) {
           fontSize: 11,
           color: C.textSub,
           fontWeight: 500,
+          padding: '2px 6px',
+          background: 'rgba(255,255,255,0.85)',
         }}>
           {p.year}
         </div>

@@ -4,6 +4,7 @@ import { useT } from '../i18n/content'
 import { cases, findCaseBySlug } from '../data/cases'
 import Footer from '../components/Footer'
 import { C, PAGE, NARROW, thumbGradient } from '../theme'
+import { media, hasMedia } from '../utils/assets'
 
 export default function CaseDetail() {
   const { slug } = useParams()
@@ -27,8 +28,35 @@ export default function CaseDetail() {
         paddingTop: 120,
         paddingBottom: 80,
         borderBottom: `1px solid ${C.border}`,
+        overflow: 'hidden',
       }}>
-        <div style={{ ...NARROW, padding: '80px 24px 60px', position: 'relative', zIndex: 1 }}>
+        {hasMedia(c.cover) && (
+          <img
+            src={media(c.cover)}
+            alt=""
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              opacity: 0.85,
+            }}
+          />
+        )}
+        <div style={{
+          ...NARROW,
+          padding: '80px 24px 60px',
+          position: 'relative',
+          zIndex: 1,
+          ...(hasMedia(c.cover) ? {
+            background: 'rgba(255,255,255,0.92)',
+            padding: '40px 32px 32px',
+            border: `1px solid ${C.border}`,
+            marginTop: 80,
+            marginBottom: 0,
+          } : {}),
+        }}>
           <Link to="/cases" style={{
             display: 'inline-block',
             fontFamily: 'var(--font-mono)',
@@ -103,6 +131,46 @@ export default function CaseDetail() {
           <STARSection label={t.cases.sectionResult}    index="04" items={c.result[lang]} last />
         </div>
       </section>
+
+      {/* ───────── Gallery ───────── */}
+      {Array.isArray(c.gallery) && c.gallery.length > 0 && (
+        <section style={{ background: C.bgAlt, borderTop: `1px solid ${C.border}` }}>
+          <div style={{ ...PAGE, padding: '60px 24px' }}>
+            <p style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 11,
+              letterSpacing: '0.3em',
+              textTransform: 'uppercase',
+              color: C.accent,
+              fontWeight: 700,
+              marginBottom: 24,
+            }}>
+              Gallery
+            </p>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: 12,
+            }}>
+              {c.gallery.map((src, i) => (
+                <img
+                  key={i}
+                  src={media(src)}
+                  alt={`${c.badge} gallery ${i + 1}`}
+                  loading="lazy"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    aspectRatio: '16 / 10',
+                    objectFit: 'cover',
+                    background: C.bgGray,
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ───────── Public References ───────── */}
       {c.publicRefs && c.publicRefs.length > 0 && (
