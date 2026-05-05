@@ -33,15 +33,17 @@
   --color-inverse-on-surface:     #313030;
 
   /* fonts */
-  --font-headline: "Space Grotesk", sans-serif;
-  --font-body:     "Manrope", sans-serif;
-  --font-label:    "Space Grotesk", sans-serif;
+  --font-headline: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "system-ui", Roboto, sans-serif;
+  --font-body:     "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "system-ui", Roboto, sans-serif;
+  --font-mono:     "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-label:    "JetBrains Mono", ui-monospace, monospace;
 }
 
 /* ── Manual font classes (backup) ── */
-.font-headline { font-family: "Space Grotesk", sans-serif; }
-.font-body     { font-family: "Manrope", sans-serif; }
-.font-label    { font-family: "Space Grotesk", sans-serif; }
+.font-headline { font-family: var(--font-headline); }
+.font-body     { font-family: var(--font-body); }
+.font-mono     { font-family: var(--font-mono); }
+.font-label    { font-family: var(--font-label); }
 
 /* ── Material Symbols ── */
 .material-symbols-outlined {
@@ -62,14 +64,16 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: #131313;
-  color: #E5E2E1;
-  font-family: "Manrope", sans-serif;
+  background-color: #ffffff;
+  color: #18181b;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "system-ui", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  letter-spacing: -0.01em;
 }
 
-::selection { background: #a4e6ff; color: #003543; }
+::selection { background: #2563eb; color: #ffffff; }
 
 /* ── Blueprint grids ── */
 .blueprint-grid {
@@ -90,9 +94,10 @@ body {
 }
 
 /* ── Scrollbar ── */
-::-webkit-scrollbar       { width: 3px; }
-::-webkit-scrollbar-track { background: #131313; }
-::-webkit-scrollbar-thumb { background: #3c494e; }
+::-webkit-scrollbar       { width: 8px; }
+::-webkit-scrollbar-track { background: #fafafa; }
+::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #a1a1aa; }
 
 /* ── Glass ── */
 .glass-panel {

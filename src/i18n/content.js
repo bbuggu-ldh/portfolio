@@ -16,9 +16,16 @@ export const content = {
         name: 'Lee Dohan · 이도한',
         title: 'Unreal Engine Developer',
         subtitle: 'with Virtual Production experience',
-        desc: 'NETFLIX 촬영 현장에 들어가는\n플러그인 · 파이프라인 · 셰이더 시스템을 만듭니다',
+        ctaPrimary: '케이스 보기',
+        ctaSecondary: '연락하기',
         tags: ['Unreal', 'C++', 'HLSL', 'nDisplay', '3DGS', 'DMX'],
       },
+      stats: [
+        { num: '4+',  label: 'NETFLIX 작품' },
+        { num: '15+', label: '프로덕션' },
+        { num: '5+',  label: '강의 / 워크숍' },
+        { num: '2022', label: '커리어 시작' },
+      ],
       focusHeading: 'What I Build on Unreal Engine',
       focusAreas: [
         {
@@ -84,9 +91,16 @@ export const content = {
         name: 'Lee Dohan · 이도한',
         title: 'Unreal Engine Developer',
         subtitle: 'with Virtual Production experience',
-        desc: 'Building plugins, pipelines, and shader systems\nthat ship to NETFLIX sets.',
+        ctaPrimary: 'View Cases',
+        ctaSecondary: 'Get in touch',
         tags: ['Unreal', 'C++', 'HLSL', 'nDisplay', '3DGS', 'DMX'],
       },
+      stats: [
+        { num: '4+',  label: 'NETFLIX titles' },
+        { num: '15+', label: 'Productions' },
+        { num: '5+',  label: 'Lectures' },
+        { num: '2022', label: 'Started' },
+      ],
       focusHeading: 'What I Build on Unreal Engine',
       focusAreas: [
         {

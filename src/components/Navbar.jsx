@@ -16,28 +16,74 @@ export default function Navbar() {
   const isActive = (to) => pathname === to || pathname.startsWith(to + '/')
 
   return (
-    <header className="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-[#131313]/40 backdrop-blur-xl border-b border-[#353534]/20">
-      <Link to="/" className="font-headline text-xl font-bold tracking-tighter text-[#E5E2E1]">
+    <header
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        background: 'rgba(255,255,255,0.85)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        borderBottom: '1px solid #e5e5e5',
+        padding: '14px 32px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: 32,
+      }}
+    >
+      <Link
+        to="/"
+        style={{
+          fontFamily: 'var(--font-headline)',
+          fontSize: 16,
+          fontWeight: 700,
+          letterSpacing: '-0.01em',
+          color: '#18181b',
+          textDecoration: 'none',
+        }}
+      >
         LEE DOHAN
       </Link>
 
-      <nav className="hidden md:flex items-center space-x-10">
+      <nav style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
         {navItems.map(({ to, key }) => (
-          <Link key={to} to={to}
-            className={`font-headline text-sm tracking-[0.1em] transition-colors duration-300 ${
-              isActive(to)
-                ? 'text-[#00D1FF] font-bold border-b-2 border-[#00D1FF] pb-1'
-                : 'text-[#BAC9CD] hover:text-[#E5E2E1]'
-            }`}>
+          <Link
+            key={to}
+            to={to}
+            style={{
+              fontFamily: 'var(--font-headline)',
+              fontSize: 13,
+              letterSpacing: '0.05em',
+              textDecoration: 'none',
+              color: isActive(to) ? '#2563eb' : '#52525b',
+              fontWeight: isActive(to) ? 600 : 500,
+              transition: 'color 0.2s',
+            }}
+          >
             {t.nav[key]}
           </Link>
         ))}
       </nav>
 
-      <div className="flex items-center gap-4">
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
         <LangToggle />
-        <Link to="/about"
-          className="bg-primary-container text-on-primary px-6 py-2 font-headline text-sm tracking-widest font-bold scale-95 active:scale-90 transition-transform">
+        <Link
+          to="/about"
+          style={{
+            background: '#18181b',
+            color: '#ffffff',
+            padding: '9px 20px',
+            fontFamily: 'var(--font-headline)',
+            fontSize: 12,
+            fontWeight: 600,
+            letterSpacing: '0.08em',
+            textDecoration: 'none',
+            borderRadius: 2,
+          }}
+        >
           {t.nav.contact}
         </Link>
       </div>

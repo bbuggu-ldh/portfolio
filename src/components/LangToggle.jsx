@@ -1,6 +1,6 @@
 import { useLang } from '../i18n/LanguageContext'
 
-export default function LangToggle({ className = '' }) {
+export default function LangToggle() {
   const { lang, toggle } = useLang()
   const next = lang === 'ko' ? 'EN' : 'KR'
 
@@ -9,9 +9,27 @@ export default function LangToggle({ className = '' }) {
       type="button"
       onClick={toggle}
       aria-label={`Switch language to ${next}`}
-      className={`font-label text-[10px] tracking-[0.2em] text-[#BAC9CD] hover:text-[#A4E6FF] transition-colors px-2 py-1 border border-[#3c494e]/40 hover:border-[#A4E6FF]/60 ${className}`}
+      style={{
+        fontFamily: 'var(--font-mono)',
+        fontSize: 11,
+        letterSpacing: '0.15em',
+        color: '#52525b',
+        padding: '6px 10px',
+        border: '1px solid #e5e5e5',
+        background: 'transparent',
+        cursor: 'pointer',
+        transition: 'all 0.15s',
+      }}
+      onMouseEnter={e => {
+        e.currentTarget.style.borderColor = '#18181b'
+        e.currentTarget.style.color = '#18181b'
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.borderColor = '#e5e5e5'
+        e.currentTarget.style.color = '#52525b'
+      }}
     >
-      {lang === 'ko' ? 'KO' : 'EN'} <span className="text-[#3c494e]">/</span> {next}
+      {lang === 'ko' ? 'KO' : 'EN'} <span style={{ color: '#a1a1aa' }}>/</span> {next}
     </button>
   )
 }
