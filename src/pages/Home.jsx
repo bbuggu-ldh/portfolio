@@ -3,19 +3,8 @@ import { useLang } from '../i18n/LanguageContext'
 import { useT } from '../i18n/content'
 import { tier1Cases } from '../data/cases'
 import Footer from '../components/Footer'
-
-const PAGE = { maxWidth: 1180, marginLeft: 'auto', marginRight: 'auto' }
-
-const C = {
-  text:       '#18181b',
-  textSub:    '#52525b',
-  textMuted:  '#a1a1aa',
-  border:     '#e5e5e5',
-  bg:         '#ffffff',
-  bgAlt:      '#fafafa',
-  bgGray:     '#f4f4f5',
-  accent:     '#2563eb',
-}
+import HeroShader from '../components/HeroShader'
+import { C, PAGE } from '../theme'
 
 export default function Home() {
   const { lang } = useLang()
@@ -32,21 +21,29 @@ export default function Home() {
         padding: '180px 24px 120px',
         textAlign: 'center',
         overflow: 'hidden',
+        minHeight: '88vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
-        {/* Subtle gradient anchor */}
+        {/* Interactive shader background */}
+        <HeroShader />
+
+        {/* Shader signature label */}
         <div style={{
           position: 'absolute',
-          top: '40%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 800,
-          height: 800,
-          background: 'radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 60%)',
-          pointerEvents: 'none',
-          zIndex: 0,
-        }} />
+          bottom: 24,
+          left: 32,
+          fontFamily: 'var(--font-mono)',
+          fontSize: 10,
+          letterSpacing: '0.2em',
+          color: C.textMuted,
+          zIndex: 2,
+        }}>
+          // hero.frag · fbm + mouse warp
+        </div>
 
-        <div style={{ ...PAGE, position: 'relative', zIndex: 1 }}>
+        <div style={{ ...PAGE, position: 'relative', zIndex: 1, width: '100%' }}>
           <h1 style={{
             fontFamily: 'var(--font-headline)',
             fontWeight: 800,

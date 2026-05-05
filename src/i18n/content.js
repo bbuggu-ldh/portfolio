@@ -67,6 +67,21 @@ export const content = {
       worksLink: '전체 보기',
     },
 
+    cases: {
+      title: 'Cases',
+      intro: 'Virtual Production 현장에서 만든 시스템과 도구. 각 케이스는 실제 문제와 그 해결 방식을 STAR 구조로 정리했습니다.',
+      filterAll: '전체',
+      filterTier1: '주요',
+      filterTier2: '추가',
+      sectionSituation: 'Situation',
+      sectionTask: 'Task',
+      sectionAction: 'Action',
+      sectionResult: 'Result',
+      backToCases: '← 케이스 목록',
+      prev: '이전',
+      next: '다음',
+    },
+
     about: {
       title: '소개',
       // Full About copy goes here in Phase 2
@@ -140,6 +155,21 @@ export const content = {
       },
       worksHeading: 'Selected Cases',
       worksLink: 'View all',
+    },
+
+    cases: {
+      title: 'Cases',
+      intro: 'Systems and tools built on Virtual Production sets. Each case is structured as STAR — situation, task, action, result.',
+      filterAll: 'All',
+      filterTier1: 'Featured',
+      filterTier2: 'Additional',
+      sectionSituation: 'Situation',
+      sectionTask: 'Task',
+      sectionAction: 'Action',
+      sectionResult: 'Result',
+      backToCases: '← All Cases',
+      prev: 'Prev',
+      next: 'Next',
     },
 
     about: {

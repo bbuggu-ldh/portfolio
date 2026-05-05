@@ -12,7 +12,9 @@
       "Read(//tmp/**)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5174/portfolio/)",
       "WebFetch(domain:imweb.me)",
-      "Bash(curl -s http://localhost:5174/portfolio/)"
+      "Bash(curl -s http://localhost:5174/portfolio/)",
+      "Bash(curl -s http://localhost:5174/portfolio/ -o /dev/null -w \"%{http_code}\\\\n\")",
+      "Read(//private/tmp/**)"
     ]
   }
 }
