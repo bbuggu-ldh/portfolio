@@ -3,8 +3,23 @@ import { useLang } from '../i18n/LanguageContext'
 import { useT } from '../i18n/content'
 import { cases, findCaseBySlug } from '../data/cases'
 import Footer from '../components/Footer'
+import VideoEmbed from '../components/VideoEmbed'
+import HeroShader from '../components/HeroShader'
+import PointCloudShader from '../components/PointCloudShader'
+import UEProfilerDiagram from '../components/UEProfilerDiagram'
+import UEProfilerFeatures from '../components/UEProfilerFeatures'
+import UEProfilerCodeSnippets from '../components/UEProfilerCodeSnippets'
+import Diagram3DGS from '../components/Diagram3DGS'
+import Features3DGS from '../components/Features3DGS'
+import Diagram_DMX from '../components/Diagram_DMX'
+import Features_DMX from '../components/Features_DMX'
+import Diagram_VPAuto from '../components/Diagram_VPAuto'
+import Features_VPAuto from '../components/Features_VPAuto'
+import Diagram_Shaders from '../components/Diagram_Shaders'
+import Features_Shaders from '../components/Features_Shaders'
 import { C, PAGE, NARROW, thumbGradient } from '../theme'
 import { media, hasMedia } from '../utils/assets'
+import { isEmbeddable } from '../utils/embed'
 
 export default function CaseDetail() {
   const { slug } = useParams()
@@ -24,13 +39,14 @@ export default function CaseDetail() {
       {/* ───────── Hero ───────── */}
       <section style={{
         position: 'relative',
-        background: thumbGradient(c.badge),
+        background: hasMedia(c.cover) ? thumbGradient(c.badge) : C.bg,
         paddingTop: 120,
         paddingBottom: 80,
         borderBottom: `1px solid ${C.border}`,
         overflow: 'hidden',
+        minHeight: '60vh',
       }}>
-        {hasMedia(c.cover) && (
+        {hasMedia(c.cover) ? (
           <img
             src={media(c.cover)}
             alt=""
@@ -43,6 +59,12 @@ export default function CaseDetail() {
               opacity: 0.85,
             }}
           />
+        ) : hasMedia(c.heroOverlay) ? (
+          /* Image sampled into a point cloud — 3DGS-style splat */
+          <PointCloudShader src={media(c.heroOverlay)} />
+        ) : (
+          /* Default abstract shader background */
+          <HeroShader />
         )}
         <div style={{
           ...NARROW,
@@ -105,7 +127,8 @@ export default function CaseDetail() {
           <p style={{
             fontSize: 17,
             lineHeight: 1.7,
-            color: C.textSub,
+            color: C.text,
+            fontWeight: 500,
             marginBottom: 28,
           }}>
             {c.summary[lang]}
@@ -115,16 +138,83 @@ export default function CaseDetail() {
             fontFamily: 'var(--font-mono)',
             fontSize: 11,
             letterSpacing: '0.05em',
-            color: C.textMuted,
+            color: C.text,
+            fontWeight: 600,
           }}>
             {c.tags.join('  ·  ')}
           </div>
         </div>
       </section>
 
+      {/* ───────── Resources (top — moved up for readability) ───────── */}
+      {c.publicRefs && c.publicRefs.length > 0 && (
+        <section style={{ background: C.bg, borderTop: `1px solid ${C.border}` }}>
+          <div style={{ ...PAGE, padding: '40px 24px' }}>
+            <div style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 12,
+              alignItems: 'center',
+            }}>
+              <p style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: 11,
+                letterSpacing: '0.3em',
+                textTransform: 'uppercase',
+                color: C.accent,
+                fontWeight: 700,
+                marginRight: 8,
+              }}>
+                Resources
+              </p>
+              {c.publicRefs.map((r, i) => {
+                const isVideo = isEmbeddable(r.url)
+                return (
+                  <a
+                    key={i}
+                    href={r.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      padding: '10px 16px',
+                      border: `1px solid ${C.border}`,
+                      background: C.bg,
+                      fontFamily: 'var(--font-headline)',
+                      fontSize: 13,
+                      fontWeight: 600,
+                      color: C.text,
+                      textDecoration: 'none',
+                      transition: 'all 0.2s',
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.borderColor = C.text
+                      e.currentTarget.style.background = C.text
+                      e.currentTarget.style.color = C.bg
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.borderColor = C.border
+                      e.currentTarget.style.background = C.bg
+                      e.currentTarget.style.color = C.text
+                    }}
+                  >
+                    <span style={{ fontSize: 11, color: C.accent }}>
+                      {isVideo ? '▶' : '↗'}
+                    </span>
+                    <span>{r.label}</span>
+                  </a>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ───────── STAR sections ───────── */}
       <section style={{ background: C.bg }}>
-        <div style={{ ...NARROW, padding: '100px 24px 80px' }}>
+        <div style={{ ...NARROW, padding: '80px 24px 80px' }}>
           <STARSection label={t.cases.sectionSituation} index="01" items={c.situation[lang]} />
           <STARSection label={t.cases.sectionTask}      index="02" items={c.task[lang]} />
           <STARSection label={t.cases.sectionAction}    index="03" items={c.action[lang]} />
@@ -132,84 +222,92 @@ export default function CaseDetail() {
         </div>
       </section>
 
-      {/* ───────── Gallery ───────── */}
+      {/* ───────── Diagram (case-specific) — system overview ───────── */}
+      {c.slug === 'ueprofiler'         && <UEProfilerDiagram lang={lang} />}
+      {c.slug === '3dgs-pipeline'      && <Diagram3DGS lang={lang} />}
+      {c.slug === 'dmx-lighting-match' && <Diagram_DMX lang={lang} />}
+      {c.slug === 'vp-automation'      && <Diagram_VPAuto lang={lang} />}
+      {c.slug === 'modular-shaders'    && <Diagram_Shaders lang={lang} />}
+
+      {/* ───────── Features (case-specific) — concrete capabilities ───────── */}
+      {c.slug === 'ueprofiler'         && <UEProfilerFeatures lang={lang} />}
+      {c.slug === '3dgs-pipeline'      && <Features3DGS lang={lang} />}
+      {c.slug === 'dmx-lighting-match' && <Features_DMX lang={lang} />}
+      {c.slug === 'vp-automation'      && <Features_VPAuto lang={lang} />}
+      {c.slug === 'modular-shaders'    && <Features_Shaders lang={lang} />}
+
+
+      {/* ───────── Code (case-specific) — implementation IP ───────── */}
+      {c.slug === 'ueprofiler' && <UEProfilerCodeSnippets lang={lang} />}
+
+      {/* ───────── Gallery — full-width scroll-through ─────────
+          gallery items are strings (single full-width row) OR
+          arrays of strings (multi-column row with equal width) */}
       {Array.isArray(c.gallery) && c.gallery.length > 0 && (
         <section style={{ background: C.bgAlt, borderTop: `1px solid ${C.border}` }}>
-          <div style={{ ...PAGE, padding: '60px 24px' }}>
-            <p style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 11,
-              letterSpacing: '0.3em',
-              textTransform: 'uppercase',
-              color: C.accent,
-              fontWeight: 700,
-              marginBottom: 24,
-            }}>
-              Gallery
-            </p>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: 12,
-            }}>
-              {c.gallery.map((src, i) => (
-                <img
+          <div style={{
+            maxWidth: 1400,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            padding: '40px 24px 80px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 24,
+          }}>
+            {c.gallery.map((entry, i) => {
+              const items = Array.isArray(entry) ? entry : [entry]
+              return (
+                <div
                   key={i}
-                  src={media(src)}
-                  alt={`${c.badge} gallery ${i + 1}`}
-                  loading="lazy"
                   style={{
-                    width: '100%',
-                    height: 'auto',
-                    aspectRatio: '16 / 10',
-                    objectFit: 'cover',
-                    background: C.bgGray,
+                    display: 'grid',
+                    gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))`,
+                    gap: 12,
                   }}
-                />
-              ))}
-            </div>
+                >
+                  {items.map((src, j) => <GalleryItem key={j} src={src} alt={`${c.badge} ${i + 1}-${j + 1}`} />)}
+                </div>
+              )
+            })}
           </div>
         </section>
       )}
 
-      {/* ───────── Public References ───────── */}
-      {c.publicRefs && c.publicRefs.length > 0 && (
-        <section style={{ background: C.bgGray, borderTop: `1px solid ${C.border}` }}>
-          <div style={{ ...NARROW, padding: '60px 24px' }}>
-            <p style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 11,
-              letterSpacing: '0.3em',
-              textTransform: 'uppercase',
-              color: C.accent,
-              fontWeight: 700,
-              marginBottom: 16,
-            }}>
-              Public References
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {c.publicRefs.map((r, i) => (
-                <a
-                  key={i}
-                  href={r.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: 14,
-                    color: C.text,
-                    textDecoration: 'none',
-                    padding: '10px 0',
-                    borderBottom: `1px solid ${C.border}`,
-                  }}
-                >
-                  {r.label} <span style={{ color: C.accent, marginLeft: 6 }}>↗</span>
-                </a>
-              ))}
+      {/* ───────── Videos (embedded) ───────── */}
+      {(() => {
+        const videoRefs = (c.publicRefs || []).filter(r => isEmbeddable(r.url))
+        if (videoRefs.length === 0) return null
+        return (
+          <section style={{ background: C.bg, borderTop: `1px solid ${C.border}` }}>
+            <div style={{ ...PAGE, padding: '60px 24px' }}>
+              <p style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: 11,
+                letterSpacing: '0.3em',
+                textTransform: 'uppercase',
+                color: C.accent,
+                fontWeight: 700,
+                marginBottom: 24,
+              }}>
+                Videos
+              </p>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: videoRefs.length === 1
+                  ? 'minmax(0, 1fr)'
+                  : 'repeat(auto-fit, minmax(420px, 1fr))',
+                gap: 24,
+              }}>
+                {videoRefs.map((r, i) => (
+                  <VideoEmbed key={i} url={r.url} label={r.label} />
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )
+      })()}
+
+      {/* External links — moved to top "Resources" pills */}
 
       {/* ───────── Prev / Next ───────── */}
       <section style={{ background: C.bgGray, borderTop: `1px solid ${C.border}` }}>
@@ -286,6 +384,45 @@ function STARSection({ label, index, items, last }) {
         ))}
       </ul>
     </div>
+  )
+}
+
+function GalleryItem({ src, alt }) {
+  const url = media(src)
+  const isVideo = /\.(mp4|webm)$/i.test(src)
+  if (isVideo) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <video
+          src={url}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          style={{
+            width: '100%',
+            maxWidth: 960,
+            height: 'auto',
+            background: '#000',
+            display: 'block',
+          }}
+        />
+      </div>
+    )
+  }
+  return (
+    <img
+      src={url}
+      alt={alt}
+      loading="lazy"
+      style={{
+        width: '100%',
+        height: 'auto',
+        background: C.bgGray,
+        display: 'block',
+      }}
+    />
   )
 }
 

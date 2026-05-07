@@ -10,10 +10,17 @@ export const cases = [
     year: '2025',
     tier: 1,
     tags: ['Unreal Plugin', 'C++', 'Python', 'LLM', 'GPU Profiling'],
-    cover: null,        // e.g. 'cases/{slug}/cover.jpg' — Hero background on detail page
-    thumb: null,        // e.g. 'cases/{slug}/thumb.jpg' — used in card grid
-    gallery: [],        // e.g. ['cases/{slug}/gallery/01.jpg', ...]
-    publicRefs: [],     // e.g. [{ label: 'NETFLIX trailer', url: 'https://...' }]
+    cover: null,        // null → interactive image / shader on detail page
+    heroOverlay: 'cases/ueprofiler/hero-trace.png',  // shown via InteractiveImage spotlight
+    thumb: 'cases/ueprofiler/dashboard.png',
+    gallery: [
+      'cases/ueprofiler/gallery/01.jpg',
+    ],
+    publicRefs: [
+      { label: 'GitHub Repository (비공개 — 요청 시 권한 부여)', url: 'https://github.com/bbuggu-ldh/UEProfiler' },
+      { label: '분석 보고서 v2 (개선 후, 2026.04.16)', url: '/portfolio/media/cases/ueprofiler/20260416_224037.report.html' },
+      { label: '분석 보고서 v1 (초기 버전, 2026.04.13)', url: '/portfolio/media/cases/ueprofiler/20260413_161524.report.html' },
+    ],
     title: {
       ko: 'UEProfiler — VP 프로파일링 자동 분석 플러그인',
       en: 'UEProfiler — Automated VP Profiling Plugin',
@@ -80,10 +87,18 @@ export const cases = [
     year: '2025',
     tier: 1,
     tags: ['3DGS', 'SfM', 'Python', 'OpenCV', 'SAM'],
-    cover: null,        // e.g. 'cases/{slug}/cover.jpg' — Hero background on detail page
-    thumb: null,        // e.g. 'cases/{slug}/thumb.jpg' — used in card grid
-    gallery: [],        // e.g. ['cases/{slug}/gallery/01.jpg', ...]
-    publicRefs: [],     // e.g. [{ label: 'NETFLIX trailer', url: 'https://...' }]
+    cover: null,
+    heroOverlay: 'cases/3dgs-pipeline/hero.jpg',  // PointCloudShader animates this image
+    thumb: 'cases/3dgs-pipeline/thumb.jpg',
+    gallery: [
+      'cases/3dgs-pipeline/gallery/turntable.mp4',
+      'cases/3dgs-pipeline/gallery/01.jpg',
+      [
+        'cases/3dgs-pipeline/gallery/02_1.JPG',
+        'cases/3dgs-pipeline/gallery/02_2.JPG',
+      ],
+    ],
+    publicRefs: [],
     title: {
       ko: '3DGS 트레이닝 파이프라인 — NETFLIX 괸당',
       en: '3DGS Training Pipeline — NETFLIX Gwaeundang',
@@ -156,17 +171,23 @@ export const cases = [
     year: '2023',
     tier: 1,
     tags: ['DMX', 'SceneCapture', 'ACES', 'PQ', 'ARRI'],
-    cover: null,        // e.g. 'cases/{slug}/cover.jpg' — Hero background on detail page
-    thumb: null,        // e.g. 'cases/{slug}/thumb.jpg' — used in card grid
-    gallery: [],        // e.g. ['cases/{slug}/gallery/01.jpg', ...]
-    publicRefs: [],     // e.g. [{ label: 'NETFLIX trailer', url: 'https://...' }]
+    cover: null,
+    heroOverlay: 'productions/black-knight/thumb.jpg',  // PointCloudShader animates this
+    thumb: 'cases/dmx-lighting-match/thumb.jpg',
+    gallery: [],
+    publicRefs: [
+      { label: 'NETFLIX D.P. 시즌 2 — 공식 예고편', url: 'https://www.youtube.com/watch?v=SxnY2E_uMtY' },
+      { label: 'NETFLIX 택배기사 (Black Knight) — 공식 예고편', url: 'https://www.youtube.com/watch?v=Z6UIKAcddes' },
+      { label: 'NETFLIX 작품 페이지 — D.P. 시즌 2', url: 'https://www.netflix.com/title/81280917' },
+      { label: 'NETFLIX 작품 페이지 — 택배기사', url: 'https://www.netflix.com/title/81195027' },
+    ],
     title: {
       ko: '현장 조명 실시간 매칭 시스템 (SceneCapture → DMX)',
       en: 'Real-time On-set Lighting Match (SceneCapture → DMX)',
     },
     summary: {
-      ko: 'Unreal 가상 환경의 라이팅 변화를 실시간으로 캡처해 DMX로 송출, 현장 ARRI 조명을 자동 동기화하는 워크플로 제안 및 구현. NETFLIX DP2, 택배기사 등 본 촬영에 적용',
-      en: 'Captures Unreal lighting in real time and pushes it through DMX to drive on-set ARRI fixtures. Proposed the design and built it. Shipped on NETFLIX D.P. Season 2 and Black Knight.',
+      ko: 'Unreal 가상 환경의 라이팅 변화를 실시간으로 캡처해 DMX로 송출, 현장 ARRI 조명을 자동 동기화하는 워크플로 제안 및 구현. NETFLIX D.P. 시즌 2, 택배기사 등 본 촬영에 적용',
+      en: 'Captures Unreal lighting in real time and pushes it through DMX to drive on-set ARRI fixtures. Proposed the design and built it. Shipped on NETFLIX D.P. Season 2, Black Knight, and other productions.',
     },
     situation: {
       ko: [
@@ -210,13 +231,13 @@ export const cases = [
       ko: [
         '라이팅 셋업 시간 약 50% 단축 — 조명감독은 색공간 캘리브레이션 + 디테일 fine-tuning에만 집중.',
         '매칭 정확도 큰 폭 향상 — 동적 라이팅 변화에 조명이 자동으로 따라감.',
-        '실제 적용: NETFLIX DP2 (2023), 택배기사 (2023) 본 촬영 + 기타 VP 촬영 전반.',
+        '실제 적용: NETFLIX D.P. 시즌 2 (2023), 택배기사 (2023) 본 촬영 및 기타 VP 촬영.',
         '한계: 정량 레이턴시 측정은 미진행. 본 촬영에서 시각적 어색함 없이 사용 가능 수준으로 검증되었으나, 다음 프로젝트에서는 Unreal Insights로 캡처→DMX 송출 타임스탬프 측정 예정.',
       ],
       en: [
         'On-set lighting setup time roughly halved — the gaffer now focuses on color calibration and fine detail.',
         'Big jump in match accuracy — lighting tracks dynamic changes automatically.',
-        'Shipped on: NETFLIX D.P. Season 2 (2023), Black Knight (2023), and routine use across other VP shoots.',
+        'Shipped on: NETFLIX D.P. Season 2 (2023), Black Knight (2023), and other VP shoots.',
         'Limit: did not formally measure latency. Visually clean on set, but next project will use Unreal Insights to timestamp capture → DMX dispatch.',
       ],
     },
@@ -230,10 +251,11 @@ export const cases = [
     year: '2024',
     tier: 1,
     tags: ['Python', 'OSC', 'nDisplay', 'Pixera', 'Optitrack', 'Take Recorder', 'Genlock'],
-    cover: null,        // e.g. 'cases/{slug}/cover.jpg' — Hero background on detail page
-    thumb: null,        // e.g. 'cases/{slug}/thumb.jpg' — used in card grid
-    gallery: [],        // e.g. ['cases/{slug}/gallery/01.jpg', ...]
-    publicRefs: [],     // e.g. [{ label: 'NETFLIX trailer', url: 'https://...' }]
+    cover: null,
+    heroOverlay: 'cases/vp-automation/hero.jpg',  // PointCloudShader animates this
+    thumb: 'cases/vp-automation/hero.jpg',
+    gallery: [],
+    publicRefs: [],
     title: {
       ko: 'VP 파이프라인 통합 자동화 (3 시스템)',
       en: 'VP Pipeline Automation (3 sub-systems)',
@@ -294,10 +316,11 @@ export const cases = [
     year: '2024',
     tier: 2,
     tags: ['Material Function', 'Triplanar', 'MPC', 'Unreal Plugin', 'HLSL'],
-    cover: null,        // e.g. 'cases/{slug}/cover.jpg' — Hero background on detail page
-    thumb: null,        // e.g. 'cases/{slug}/thumb.jpg' — used in card grid
-    gallery: [],        // e.g. ['cases/{slug}/gallery/01.jpg', ...]
-    publicRefs: [],     // e.g. [{ label: 'NETFLIX trailer', url: 'https://...' }]
+    cover: null,
+    heroOverlay: 'cases/modular-shaders/thumb.jpg',  // PointCloudShader animates this
+    thumb: 'cases/modular-shaders/thumb.jpg',
+    gallery: [],
+    publicRefs: [],
     title: {
       ko: '모듈식 마스터 머티리얼 시스템',
       en: 'Modular Master Material System',

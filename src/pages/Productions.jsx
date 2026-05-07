@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import { Link } from 'react-router-dom'
 import { useLang } from '../i18n/LanguageContext'
 import { useT } from '../i18n/content'
 import { productions, lectures } from '../data/productions'
@@ -200,8 +201,11 @@ function ProductionCard({ p, lang }) {
   const tint = clientTint(p.client)
   const thumbUrl = hasMedia(p.thumb) ? media(p.thumb) : null
   return (
-    <div
+    <Link
+      to={`/productions/${p.id}`}
       style={{
+        display: 'block',
+        textDecoration: 'none',
         background: C.bg,
         border: `1px solid ${C.border}`,
         transition: 'all 0.25s',
@@ -336,7 +340,7 @@ function ProductionCard({ p, lang }) {
           </div>
         )}
       </div>
-    </div>
+    </Link>
   )
 }
 

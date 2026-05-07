@@ -52,7 +52,6 @@ export default function CaseCard({ c, lang }) {
           />
         ) : (
           <div
-            data-thumb
             style={{
               position: 'absolute',
               inset: 0,
@@ -60,7 +59,6 @@ export default function CaseCard({ c, lang }) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              transition: 'transform 0.5s ease',
             }}
           >
             <span style={{

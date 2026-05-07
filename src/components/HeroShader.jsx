@@ -1,4 +1,4 @@
-import { useRef, useMemo, useEffect } from 'react'
+import { useRef, useMemo, useEffect, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 
@@ -132,13 +132,9 @@ export default function HeroShader() {
       gl={{ antialias: false, alpha: false, powerPreference: 'low-power' }}
       orthographic
       camera={{ position: [0, 0, 1], zoom: 1 }}
-      style={{
-        position: 'absolute',
-        inset: 0,
-        zIndex: 0,
-        pointerEvents: 'none',
-      }}
+      style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}
       dpr={[1, 1.5]}
+      frameloop="always"
     >
       <ShaderPlane />
     </Canvas>
