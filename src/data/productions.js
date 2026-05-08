@@ -128,8 +128,8 @@ export const productions = [
       'productions/dp2/work2.webp',
     ],
     description: {
-      ko: 'D.P. 시즌 2 무궁화호 기차 액션 씬을 위한 LED Wall 환경.\n\n터널 내부는 Unreal Engine으로 환경을 직접 제작했고, 차창 밖 야외 배경은 실제 KTX 운행 중 창문에서 촬영한 푸티지를 스티칭하여 끊김 없는 plate로 가공. 두 소스를 Unreal에서 통합한 뒤 nDisplay 클러스터로 LED Wall에 실시간 송출.',
-      en: 'LED Wall environment for the Mugunghwa train action sequence.\n\nThe tunnel interior was built in Unreal Engine, while exterior backgrounds were captured from KTX windows on a real train ride and stitched into seamless plates. Both sources were composited in Unreal and pushed to the LED Wall via nDisplay in real time.',
+      ko: 'D.P. 시즌 2 무궁화호 기차 액션 씬을 위한 LED Wall 환경.\n\n터널 내부는 한 칸 단위로만 Unreal Engine에서 제작하고, 블루프린트 시스템으로 카메라 진행에 맞춰 끊임없이 지나가는 효과를 구현 — 풀 길이 모델링 없이 메모리·제작 비용을 최소화. 차창 밖 야외 배경은 실제 KTX 운행 중 창문에서 촬영한 푸티지를 스티칭하여 끊김 없는 plate로 가공. 두 소스를 Unreal에서 통합한 뒤 nDisplay 클러스터로 LED Wall에 실시간 송출.',
+      en: 'LED Wall environment for the Mugunghwa train action sequence.\n\nThe tunnel interior was modeled as a single section only, then driven by a Blueprint system that scrolls it past the camera for an endless tunnel effect — no full-length modeling, minimal memory and build cost. The exterior backgrounds were captured from KTX windows on a real train ride and stitched into seamless plates. Both sources were composited in Unreal and pushed to the LED Wall via nDisplay in real time.',
     },
     publicRefs: [
       { label: '리플레이 포인트 (NETFLIX 공식)', url: 'https://www.youtube.com/watch?v=bHBqLoI8XmQ&t=29s' },
