@@ -100,8 +100,8 @@ export const cases = [
     ],
     publicRefs: [],
     title: {
-      ko: '3DGS 트레이닝 파이프라인 — NETFLIX 괸당',
-      en: '3DGS Training Pipeline — NETFLIX Gwaeundang',
+      ko: '3DGS 트레이닝 파이프라인',
+      en: '3DGS Training Pipeline',
     },
     summary: {
       ko: '1주일 제작 기한 안에 photorealistic 드라이빙 배경을 확보하기 위해, 3DGS 전처리 파이프라인을 자체 설계하여 트레이닝 시간을 7일 → 3일로 단축',

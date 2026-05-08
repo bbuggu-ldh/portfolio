@@ -2,8 +2,10 @@ import { useParams, Link, Navigate } from 'react-router-dom'
 import { useLang } from '../i18n/LanguageContext'
 import { useT } from '../i18n/content'
 import { productions } from '../data/productions'
+import { findCaseBySlug } from '../data/cases'
 import Footer from '../components/Footer'
 import VideoEmbed from '../components/VideoEmbed'
+import PointCloudShader from '../components/PointCloudShader'
 import { C, PAGE, NARROW } from '../theme'
 import { media, hasMedia } from '../utils/assets'
 import { isEmbeddable } from '../utils/embed'
@@ -26,15 +28,25 @@ export default function ProductionDetail() {
   return (
     <main style={{ overflowX: 'hidden', width: '100%', background: C.bg }}>
 
-      {/* ───────── Hero ───────── */}
+      {/* ───────── Hero — point-cloud background + overlay text ───────── */}
       <section style={{
         position: 'relative',
-        background: C.bgGray,
+        background: '#fafafa',
         paddingTop: 120,
-        paddingBottom: 0,
+        paddingBottom: 80,
         overflow: 'hidden',
+        minHeight: '60vh',
       }}>
-        <div style={{ ...PAGE, padding: '40px 24px 0' }}>
+        {hasMedia(p.cover) && (
+          <PointCloudShader src={media(p.cover)} />
+        )}
+
+        <div style={{
+          ...PAGE,
+          padding: '40px 24px 0',
+          position: 'relative',
+          zIndex: 1,
+        }}>
           <Link to="/productions" style={{
             display: 'inline-block',
             fontFamily: 'var(--font-mono)',
@@ -79,7 +91,8 @@ export default function ProductionDetail() {
           <p style={{
             fontSize: 16,
             lineHeight: 1.7,
-            color: C.textSub,
+            color: C.text,
+            fontWeight: 500,
             marginBottom: 24,
             maxWidth: 720,
           }}>
@@ -89,33 +102,12 @@ export default function ProductionDetail() {
             fontFamily: 'var(--font-mono)',
             fontSize: 11,
             letterSpacing: '0.05em',
-            color: C.textMuted,
-            marginBottom: 48,
+            color: C.text,
+            fontWeight: 600,
           }}>
             {p.tags.join('  ·  ')}
           </div>
         </div>
-
-        {/* Hero image */}
-        {hasMedia(p.cover) && (
-          <div style={{
-            ...PAGE,
-            padding: '0 24px',
-            marginBottom: -1,
-          }}>
-            <div style={{
-              aspectRatio: '16 / 9',
-              background: '#000',
-              overflow: 'hidden',
-            }}>
-              <img
-                src={media(p.cover)}
-                alt={p.title[lang]}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-            </div>
-          </div>
-        )}
       </section>
 
       {/* ───────── Description ───────── */}
@@ -141,45 +133,121 @@ export default function ProductionDetail() {
             }}>
               {desc}
             </p>
+
+            {/* Related case button — links to a case study */}
+            {p.relatedCase && findCaseBySlug(p.relatedCase) && (
+              <div style={{ marginTop: 32 }}>
+                <Link
+                  to={`/cases/${p.relatedCase}`}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 12,
+                    padding: '14px 20px',
+                    border: `1px solid ${C.border}`,
+                    background: C.bg,
+                    fontFamily: 'var(--font-headline)',
+                    fontSize: 14,
+                    fontWeight: 600,
+                    color: C.text,
+                    textDecoration: 'none',
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.borderColor = C.text
+                    e.currentTarget.style.background = C.text
+                    e.currentTarget.style.color = C.bg
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.borderColor = C.border
+                    e.currentTarget.style.background = C.bg
+                    e.currentTarget.style.color = C.text
+                  }}
+                >
+                  <span style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 10,
+                    letterSpacing: '0.2em',
+                    color: C.accent,
+                    textTransform: 'uppercase',
+                    fontWeight: 700,
+                  }}>
+                    Related Case
+                  </span>
+                  <span>{findCaseBySlug(p.relatedCase).title[lang]}</span>
+                  <span style={{ color: C.accent }}>→</span>
+                </Link>
+              </div>
+            )}
           </div>
         </section>
       )}
 
-      {/* ───────── Gallery ───────── */}
+      {/* ───────── Gallery — full-width scroll-through ───────── */}
       {Array.isArray(p.gallery) && p.gallery.length > 0 && (
-        <section style={{ background: C.bgGray, borderTop: `1px solid ${C.border}` }}>
-          <div style={{ ...PAGE, padding: '60px 24px' }}>
-            <p style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 11,
-              letterSpacing: '0.3em',
-              textTransform: 'uppercase',
-              color: C.accent,
-              fontWeight: 700,
-              marginBottom: 24,
-            }}>
-              Gallery
-            </p>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
-              gap: 12,
-            }}>
-              {p.gallery.map((src, i) => (
-                <img
+        <section style={{ background: C.bgAlt, borderTop: `1px solid ${C.border}` }}>
+          <div style={{
+            maxWidth: 1400,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            padding: '40px 24px 80px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 24,
+          }}>
+            {p.gallery.map((entry, i) => {
+              const items = Array.isArray(entry) ? entry : [entry]
+              return (
+                <div
                   key={i}
-                  src={media(src)}
-                  alt={`${p.title.en ?? p.client} ${i + 1}`}
-                  loading="lazy"
                   style={{
-                    width: '100%',
-                    aspectRatio: '16 / 10',
-                    objectFit: 'cover',
-                    background: C.bg,
+                    display: 'grid',
+                    gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))`,
+                    gap: 12,
                   }}
-                />
-              ))}
-            </div>
+                >
+                  {items.map((src, j) => {
+                    const url = media(src)
+                    const isVideo = /\.(mp4|webm)$/i.test(src)
+                    if (isVideo) {
+                      return (
+                        <div key={j} style={{ display: 'flex', justifyContent: 'center' }}>
+                          <video
+                            src={url}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            preload="metadata"
+                            style={{
+                              width: '100%',
+                              maxWidth: 960,
+                              height: 'auto',
+                              background: '#000',
+                              display: 'block',
+                            }}
+                          />
+                        </div>
+                      )
+                    }
+                    return (
+                      <img
+                        key={j}
+                        src={url}
+                        alt={`${p.title.en ?? p.client} ${i + 1}-${j + 1}`}
+                        loading="lazy"
+                        style={{
+                          width: '100%',
+                          height: 'auto',
+                          background: C.bgGray,
+                          display: 'block',
+                        }}
+                      />
+                    )
+                  })}
+                </div>
+              )
+            })}
           </div>
         </section>
       )}

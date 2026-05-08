@@ -3,7 +3,7 @@
 
 export function parseYouTube(url) {
   if (typeof url !== 'string') return null
-  const idMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([^&?/#]+)/)
+  const idMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([^&?/#]+)/)
   if (!idMatch) return null
   const id = idMatch[1]
   // Extract ?t= or &t= start time (in seconds; supports 29s or 29 forms)
